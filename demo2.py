@@ -12,7 +12,7 @@ genai.configure(api_key=api_key)
 contract_types = {
     "Employment Contract": ["Employee Name", "Job Title", "Start Date", "Salary", "Benefits"],
     "Non-Disclosure Agreement (NDA)": ["Parties Involved", "Confidential Information", "Term"],
-    "Service Agreement": ["Client Name", "Service Provider", "Scope of Work", "Payment Terms"],
+    "Service Agreement": ["Client Name","Client Address", "Service Provider","Service Provider Address","Start Date","End Date", "Scope of Work", "Payment Terms"],
     # Add more contract types and their fields as needed
 }
 
@@ -28,10 +28,12 @@ def main():
     contract_data = {}
     for field in contract_fields:
         contract_data[field] = st.text_input(field)
+        if contract_data[field]=="Start Date" or "End Date":
+            contract_data[field] = st.date_input(field)
 
     # Generate contract text using Gemini 1.5 Flash
     if st.button("Generate Contract"):
-        prompt = f"Draft a {selected_contract_type} with the following details:\n"
+        prompt = f"Draft a Professional {selected_contract_type} with the following details:\n"
         for field, value in contract_data.items():
             prompt += f"{field}: {value}\n"
 
