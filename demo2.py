@@ -14,7 +14,7 @@ contract_types = {
     "Employment Contract": {
         "Employee Name": "John Doe",
         "Job Title": "Software Engineer",
-        "Start Date":datetime.date(2019, 7, 6),
+        "Start Date":value=None,
         "Salary": "100,000 USD",
         "Benefits": "Health Insurance, 401(k)"
     },
@@ -28,8 +28,8 @@ contract_types = {
         "Client Address": "123 Main St, Anytown, USA",
         "Service Provider": "XYZ Consulting",
         "Service Provider Address": "456 Elm St, Anytown, USA",
-        "Start Date":datetime.date(2019, 7, 6),
-        "End Date":datetime.date(2019, 7, 6),
+        "Start Date":value=None,
+        "End Date":value=None,
         "Scope of Work": "Web Development Services",
         "Payment Terms": "50% upfront, 50% upon completion"
     },
