@@ -29,7 +29,7 @@ def main():
     for field in contract_fields:
         contract_data[field] = st.text_input(field)
         if contract_data[field]=="Start Date" or "End Date":
-            contract_data[field] = st.date_input(field)
+            st.date_input(field)
 
     # Generate contract text using Gemini 1.5 Flash
     if st.button("Generate Contract"):
