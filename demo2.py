@@ -28,9 +28,7 @@ def main():
     contract_data = {}
     for field in contract_fields:
         contract_data[field] = st.text_input(field)
-        if contract_data[field]=="Start Date" or "End Date":
-            st.date_input(field)
-
+        
     # Generate contract text using Gemini 1.5 Flash
     if st.button("Generate Contract"):
         prompt = f"Draft a Professional {selected_contract_type} with the following details:\n"
