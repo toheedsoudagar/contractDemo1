@@ -79,7 +79,8 @@ def main():
         if contract_text:
             st.subheader("Generated Contract")
             st.write(contract_text)
-st.write('Made with ❤️ by [Nu-Pie Data Science Team](https://nu-pie.com/data-team-as-a-service-dtaas/)')
+            st.write('Made with ❤️ by [Nu-Pie Data Science Team](https://nu-pie.com/data-team-as-a-service-dtaas/)')
+
 
 if __name__ == "__main__":
     main()
