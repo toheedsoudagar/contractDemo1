@@ -60,7 +60,17 @@ def main():
 
         # Use Gemini 1.5 Flash to generate contract text
         model = genai.GenerativeModel(model_name="gemini-1.5-flash-latest")
-        response = model.generate_content(prompt)
+        retries = 5
+        for i in range(retries):
+            try:
+                response = model.generate_content(input_text)
+                return response.text
+            except Exception as e:
+                st.warning(f"Retrying...")
+            
+        st.error("Failed to generate a response after multiple attempts.")
+        return None
+        
         st.subheader("Generated Contract")
         st.write(response.text)
 
