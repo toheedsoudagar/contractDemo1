@@ -107,6 +107,16 @@ IN WITNESS WHEREOF, the parties have executed this Agreement as of the date firs
 # Function to get a response from Google GenAI
 def get_gemini_response(input_text):
     model = genai.GenerativeModel("gemini-1.5-flash-latest")
+    retries = 5
+    for i in range(retries):
+        try:
+            response = model.generate_content(input_text)
+            return response.text
+        except Exception as e:
+            st.warning(f"Attempt {i+1}/{retries} failed due to: {str(e)}. Retrying...")
+            time.sleep(1)  # Wait for 2 seconds before retrying
+    st.error("Failed to generate a response after multiple attempts.")
+    return None
     response = model.generate_content(input_text)
     return response.text
 
