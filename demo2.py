@@ -14,7 +14,7 @@ contract_types = {
     "Employment Contract": {
         "Employee Name": "John Doe",
         "Job Title": "Software Engineer",
-        "Start Date":"3 july 2023",
+        "Start Date": "3 july 2023",
         "Salary": "100,000 USD",
         "Benefits": "Health Insurance, 401(k)"
     },
@@ -28,13 +28,25 @@ contract_types = {
         "Client Address": "123 Main St, Anytown, USA",
         "Service Provider": "XYZ Consulting",
         "Service Provider Address": "456 Elm St, Anytown, USA",
-        "Start Date":"3 july 2023",
-        "End Date":"4 july 2025",
+        "Start Date":"4 july 2023",
+        "End Date": "5 july 2025",
         "Scope of Work": "Web Development Services",
         "Payment Terms": "50% upfront, 50% upon completion"
     },
     # Add more contract types and their fields as needed
 }
+
+# Function to generate content with retries
+def generate_contract_text(model, input_text, retries=5):
+    for i in range(retries):
+        try:
+            response = model.generate_content(input_text)
+            return response.text
+        except Exception as e:
+            st.warning(f"Attempt {i+1}/{retries} failed. Retrying...")
+    
+    st.error("Failed to generate a response after multiple attempts.")
+    return None
 
 # Create a Streamlit app
 def main():
@@ -58,12 +70,13 @@ def main():
         for field, value in contract_data.items():
             prompt += f"{field}: {value}\n"
 
-        # Use Gemini 1.5 Flash to generate contract text
+        # Use Gemini 1.5 Flash to generate contract text with retries
         model = genai.GenerativeModel(model_name="gemini-1.5-flash-latest")
+        contract_text = generate_contract_text(model, prompt)
         
-        
-        st.subheader("Generated Contract")
-        st.write(response.text)
+        if contract_text:
+            st.subheader("Generated Contract")
+            st.write(contract_text)
 
 if __name__ == "__main__":
     main()
