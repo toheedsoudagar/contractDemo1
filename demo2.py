@@ -50,7 +50,9 @@ def generate_contract_text(model, input_text, retries=5):
 
 # Create a Streamlit app
 def main():
-    st.title("Contract Drafting Tool")
+    st.header("Nu-pie Contract Drafting Tool")
+    
+   
 
     # Display contract type dropdown
     selected_contract_type = st.selectbox("Select Contract Type", list(contract_types.keys()))
@@ -77,6 +79,7 @@ def main():
         if contract_text:
             st.subheader("Generated Contract")
             st.write(contract_text)
+st.write('Made with ❤️ by [Nu-Pie Data Science Team](https://nu-pie.com/data-team-as-a-service-dtaas/)')
 
 if __name__ == "__main__":
     main()
