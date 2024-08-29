@@ -66,8 +66,7 @@ This Agreement ("Agreement") is made between {vendor} ("Vendor") and {service_pr
 4. **Payment Terms**: The Vendor agrees to pay the Service Provider according to the following schedule: {payment_details}.
 5. **Confidentiality**: {confidentiality}
 6. **Termination**: {termination}
-7. **Governing Law**: {governing_law}
-8. **Miscellaneous**: Any amendments or modifications to this Agreement must be in writing and signed by both parties.
+7. **Miscellaneous**: Any amendments or modifications to this Agreement must be in writing and signed by both parties.
 IN WITNESS WHEREOF, the parties have executed this Agreement on the date first written above. 
 """
 
@@ -80,8 +79,7 @@ This Employment Agreement ("Agreement") is made between {company} ("Company") an
 4. **Benefits**: The Employee is entitled to the following benefits: {benefits}.
 5. **Confidentiality**: {confidentiality}
 6. **Termination**: {termination}
-7. **Governing Law**: {governing_law}
-8. **Miscellaneous**: Any amendments or modifications to this Agreement must be in writing and signed by both parties.
+7. **Miscellaneous**: Any amendments or modifications to this Agreement must be in writing and signed by both parties.
 IN WITNESS WHEREOF, the parties have executed this Agreement on the date first written above. 
 """
 
@@ -138,7 +136,7 @@ if contract_type == "Service Provider and Vendor":
         "Termination Clause",
         "Either party may terminate this Agreement by providing 30 days' written notice. Upon termination, all outstanding payments for services rendered will be due immediately.",
     )
-    governing_law = st.text_input("Governing Law", "Specify Jurisdiction")
+    
 
     # Generate contract button
     if st.button("Generate Contract"):
@@ -154,7 +152,7 @@ if contract_type == "Service Provider and Vendor":
             end_date=end_date,
             confidentiality=confidentiality,
             termination=termination,
-            governing_law=governing_law,
+           
         )
 
         # Generate the contract using Google GenAI
@@ -179,7 +177,7 @@ elif contract_type == "Employee and Company":
     termination = st.text_area(
         "Termination Clause", "Either party may terminate this Agreement by providing 30 days' written notice."
     )
-    governing_law = st.text_input("Governing Law", "Specify Jurisdiction")
+   
 
     # Generate contract button
     if st.button("Generate Contract"):
@@ -194,7 +192,7 @@ elif contract_type == "Employee and Company":
             benefits=benefits,
             confidentiality=confidentiality,
             termination=termination,
-            governing_law=governing_law,
+          
         )
 
         # Generate the contract using Google GenAI
@@ -221,7 +219,7 @@ elif contract_type == "Licensing Agreement":
     start_date = st.date_input("Start Date")
     end_date = st.date_input("End Date")
     termination_conditions = st.text_area("Termination Conditions")
-    governing_law = st.text_input("Governing Law")
+  
 
     if st.button("Generate Contract"):
         # Format the template with the details
@@ -241,7 +239,7 @@ elif contract_type == "Licensing Agreement":
             start_date=start_date.strftime("%Y-%m-%d"),
             end_date=end_date.strftime("%Y-%m-%d"),
             termination_conditions=termination_conditions,
-            governing_law=governing_law,
+            
         )
 
         st.subheader("Generated Licensing Agreement")
